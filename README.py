@@ -1,9 +1,23 @@
-import pygame
-pygame.init()
-pygame.display.set_mode((2000, 1500))
+import pygame as p
+
+betaicon = p.image.load('resources/icons/betaicon.png')
+player = p.image.load('resources/player/stand.png')
+p_w = p.image.load('resources/player/walk.png')
+bg = p.image.load('resources/backgrounds/big_hotel_outside.png')
+
+p.init()
+
+screen = p.display.set_mode((1000, 900), p.FULLSCREEN)
+p.display.set_caption('Annonencening - Closed Beta (0.1 build)')
+p.display.set_icon(betaicon)
+
 run = True
 while run:
-    for e in pygame.event.get():
-        if e.type == pygame.QUIT:
+    screen.blit(bg, (0, 0))
+    screen.blit(player, (500, 900))
+    p.display.update()
+    for e in p.event.get():
+        if e.type == p.QUIT:
             run = False
-pygame.quit()
+
+p.quit()
