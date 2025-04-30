@@ -4,9 +4,9 @@ import sys
 betaicon = p.image.load('resources/icons/betaicon.png')
 player = p.image.load('resources/player/stand.png')
 p_w = p.image.load('resources/player/walk.png')
-x = 450
-y = 450
-speed = 10
+p_x = 450
+p_y = 450
+speed = 5
 clock = p.time.Clock()
 
 p.init()
@@ -17,7 +17,7 @@ p.display.set_icon(betaicon)
 
 
 def draw():
-    screen.fill((227, 130, 123))
+    screen.fill((153, 247, 247))
 
 
 run = True
@@ -25,20 +25,19 @@ while run:
     for e in p.event.get():
         if e.type == p.QUIT:
             run = False
-            break
 
     keys = p.key.get_pressed()
-    if keys[p.K_LEFT] and x > 50:
-        x -= speed
-        left = True
-        right = False
-    elif keys[p.K_RIGHT] and x < 900:
-        x += speed
-        left = False
-        right = True
+    if keys[p.K_a] and p_x > 50:
+        p_x -= speed
+    elif keys[p.K_d] and p_x < 900:
+        p_x += speed
+    elif keys[p.K_SPACE] and p_y > 50:
+        p_y -= speed
+    elif keys[p.K_s] and p_y < 450:
+        p_y += speed
 
     draw()
-    screen.blit(player, (x, y))
+    screen.blit(player, (p_x, p_y))
     p.display.flip()
     p.display.update()
     clock.tick(60)
